@@ -3,7 +3,7 @@ This project is an example of my work in creating a Red-Black Tree. I was charge
 
 ## File Contents
 ### ordered_map.js
-This is where the ordered map was created and the Pokemon were subsequently sorted.
+This is where the ordered map was created and the Pokemon were subsequently sorted. I allowed for insertion, rotation, getting, and traversal of nodes.
 
 ## Pokemon Team Builder Repository
 If you would like to see this project or even use it yourself, please view our [repository](https://github.com/jonana-split/Pokemon_Team_Builder) for the project.
