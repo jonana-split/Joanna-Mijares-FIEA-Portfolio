@@ -1,5 +1,5 @@
 # Pokemon Team Builder Project
-This project is a good example of creating a Red-Black Tree. I was charged with making an ordered map data structure using Red-Black trees in order to provide another method of sorting Pokemon. This was a group project, but this data structure was created by me.
+This project is an example of my work in creating a Red-Black Tree. I was charged with making an ordered map data structure using Red-Black trees in order to provide another method of sorting Pokemon. This was a group project, but this data structure was created by me.
 
 ## File Contents
 ### ordered_map.js
