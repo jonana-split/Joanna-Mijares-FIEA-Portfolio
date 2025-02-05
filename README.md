@@ -6,6 +6,16 @@ Inside of this repository you'll find personal projects and class assignments in
 
 ## Portfolio Table of Contents
 
+### Larger Projects
+- AVLTree Project (C++)
+- Memory Manager Project (C++)
+- PageRank Project (C++)
+
+### Single Files
+- Server Program (C++)
+- Bee Game (C#)
+- Pokemon Team Builder (JavaScript)
+
 ## Personal Website
 
 If you would like to see my personal website that showcases my abilities in programming, web design, and art, please visit my [personal portfolio site](https://joannamijares.com/).
