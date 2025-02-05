@@ -3,6 +3,6 @@ This was a project in which I created a Memory Management system using linked li
 
 ## File Contents
 ### MemoryManager.cpp
-This is...
+This is where the memory manager system is programmed. I established constructors and destructors, and allowed for initialization and shutdown of the manager. Memory was allocated and freed, and there were several getter functions to retrieve useful data. Worst and best fit algorithms were also created and used in testing for new methods of allocation.
 ### MemoryManager.h
 This is where my linked lists nodes that represented blocks of memory were created along with all functions used in this project.
