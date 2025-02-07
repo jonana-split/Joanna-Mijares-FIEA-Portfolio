@@ -10,6 +10,8 @@ using namespace std;
 //Joanna Mijares
 
 //Citation: CREDIT TO PWPT SLIDES 4-Balanced Trees slide 26
+
+//Creating node struct
 struct Node {
 public:
     string name;
