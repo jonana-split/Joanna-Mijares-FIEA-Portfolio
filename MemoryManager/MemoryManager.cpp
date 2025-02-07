@@ -13,29 +13,20 @@
 
 using namespace std;
 
-//
 // Joanna Mijares
-//
-//I'm very very grateful for my extensions, it helped me out so much. Thank you, Professor!
-//and thank you to the TAs who helped me out :)
-
-// do initialize, shutdown, allocate, free, getList and the allocators FIRST
 
 MemoryManager::MemoryManager(unsigned wordSize, function<int(int, void *)> allocator){
   this-> wordSize = wordSize;
   this-> defaultAllocator = allocator;
 }
-//store wordsize
-//store passed in allocator func as member var
+//store word size and store passed-in allocator function as member variable
 
 MemoryManager::~MemoryManager(){
         shutdown();
         wordSize = 0;
         defaultAllocator = nullptr;
 }
-//deleted heap mem
-//never called directly
-//if obj initialized, call shutdown
+//if object is initialized, call shutdown
 
 void MemoryManager::initialize(size_t sizeInWords){
 
