@@ -352,11 +352,12 @@ void *MemoryManager::getList(){
 
         int arrSize = 0;
 
-        //get how many
+        //how many words fit into current, aka length
         if(wordSize != 0 && curr->size !=0){
             arrSize = (curr->size)/wordSize;
         }
 
+        //populate list with offset and then length
         if(curr->isfree == true){
             arr[arrIndex] = curr->first;
             arrIndex ++;
@@ -374,10 +375,12 @@ void *MemoryManager::getList(){
     return arr;
  }
 
+//word size getter
 unsigned MemoryManager::getWordSize(){
     return wordSize;
 }
 
+//memory location start getter
 void *MemoryManager::getMemoryStart(){
     return memory;
 }
@@ -385,13 +388,15 @@ void *MemoryManager::getMemoryStart(){
 unsigned MemoryManager::getMemoryLimit(){
     unsigned sizeInBytes = wordSize * sizeinwords;
     return sizeInBytes;
-    //total bytes u can store
+    //total bytes you can store
 }
 
+//algorithm for finding best/smallest fitting hole in allocation
 int bestFit(int sizeInWords, void *list){
 
     //CITE: https://stackoverflow.com/questions/27852372/void-typed-function-parameter
-    
+
+    //list of holes/offsets is provided
     uint16_t* arr = (uint16_t*)list;
 
     int sizeinbytes = sizeInWords;
@@ -406,6 +411,7 @@ int bestFit(int sizeInWords, void *list){
     int smallestHole = arr[2];
     //starting at arr[2] because it's the first length value
 
+    //find smallest possible hole
     for(int i=1; i <= 2*arr[0] ; i++) {
         if(i % 2 == 0) {
             if(arr[i]<=smallestHole && arr[i]>=sizeInWords) {
@@ -414,13 +420,11 @@ int bestFit(int sizeInWords, void *list){
             }
         }
     }
-    //list is like getlist
-    //hole in list that best fits (aka smallest hole)
-    //returns word offset (aka num before size)
 
     return offset;
 }
 
+//algorithm for finding worst/largest fitting hole in allocation
 int worstFit(int sizeInWords, void *list){
 
     uint16_t* arr = (uint16_t*)list;
@@ -435,6 +439,7 @@ int worstFit(int sizeInWords, void *list){
     int largestHole = arr[2];
     //starting at arr[2] because it's the first length value
 
+  //find largest possible hole
     for(int i=1; i <= 2*arr[0] ; i++) {
         if(i % 2 == 0) {
             if(arr[i]>=largestHole && arr[i]>=sizeInWords) {
@@ -443,9 +448,6 @@ int worstFit(int sizeInWords, void *list){
             }
         }
     }
-
-    //list like getList
-    //hole in list that is largest
 
     return offset;
 
