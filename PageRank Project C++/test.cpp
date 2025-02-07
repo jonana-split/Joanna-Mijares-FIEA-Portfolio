@@ -1,4 +1,3 @@
-/*
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
 #include <sstream>
@@ -525,4 +524,3 @@ zoom.us 0.07
 
     REQUIRE(actualOutput.str() == expectedOutput);
 }
-*/
