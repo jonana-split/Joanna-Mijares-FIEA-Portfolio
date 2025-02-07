@@ -17,11 +17,11 @@ using namespace std;
 
 void AdjacencyList::parseInput(string str) {
 
-    //this function acts like my main.cpp but for testing
+    //this function acts as my main.cpp but for testing
 
     AdjacencyList adjacencyList; //create a list
 
-    istringstream in(str); //
+    istringstream in(str); 
 
     int no_of_lines;
     int power_iterations;
@@ -109,14 +109,12 @@ void AdjacencyList::insertWebsite(string from, string to){
     int out = getOutdegree(from);
 
     //if from is not in the "to" keys, make it a key with an empty vector associated
-    //this was a big roadblock for me! I got it in the end though :)
     if (adjList.find(from) == adjList.end()) {
         vector<pair<string, float>> empty;
         adjList[from] = empty;
     }
 
     //create a new pair out of the "from" value and 1/the outdegree of the "from" value
-    //to be quite honest I probably could have just used a vector of strings instead of a vector of pairs, but I just kept going with what I was working with from the start
     pair<string, float> newPair = {from, 1.0f/out};
 
     //push back the "to" key and "from" value to the adjacency list
