@@ -10,7 +10,6 @@ using namespace std;
 
 //Joanna Mijares
 
-//referenced 8a - Graph Terminology and Implementation.pdf slide 56
 int main() {
     int no_of_lines;
     int power_iterations;
