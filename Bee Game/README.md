@@ -1,5 +1,5 @@
 # Bee Game
-This is a simple C# code for a minigame in a group project game I worked on. This minigame level was designed and programmed entirely on my own, and though it is simple I am proud of my work. This was in Spring 2023, so it is one of my older projects, but I believe it adds to my story as one of my first independent pieces of game code.
+This is a simple C# code for a minigame in a group project game I worked on. This minigame level was designed and programmed on my own. This was in Spring 2023, so it is one of my older projects, but I believe it adds to my story as one of my first independent pieces of game code.
 
 ## File Contents
 ### DetectNote.cs
