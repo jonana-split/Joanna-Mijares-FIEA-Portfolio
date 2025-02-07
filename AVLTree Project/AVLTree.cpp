@@ -9,8 +9,9 @@ using namespace std;
 //Joanna Mijares
 
 //Citation: Used Stepik Module5_Solution.PDF as reference and guide
+
 //Height Function recursively finds the longest path from root to leaf. The height of each subtree is calculated and the
-// largest one is selected until eventually the last and greatest node is reached. Then 1 is added to it to account for the node itself
+//largest one is selected until eventually the last and greatest node is reached. Then 1 is added to it to account for the node itself
 int MyAVLTree::height(Node* node) const {
     if (node == nullptr)
         return 0;
@@ -18,6 +19,7 @@ int MyAVLTree::height(Node* node) const {
 }
 
 //Citation: Used Discussion Slides Discussion 5 - Balanced Trees Slide 18 as reference and guide
+
 //The Balance Factor is the height of a node's left child minus the height of a node's right child
 int MyAVLTree::balanceFactor(Node* node){
     if(node == nullptr){
@@ -41,6 +43,7 @@ void MyAVLTree::printLevelCount() {
 }
 
 //Citation: Referenced 3 - Trees.pdf Slide 69 for inspiration and reference
+
 //Finds the total number of nodes in a tree.
 int MyAVLTree::treeSizeHelper(Node* node) const{
     if(node == nullptr){
@@ -62,8 +65,8 @@ int MyAVLTree::treeSize() const{
     return treeSizeHelper(root);
 }
 
-
 //Citation: Class Presentation 4-Balanced Trees Slides #12-14
+
 //Rotates the node to the left
 Node* MyAVLTree::rotateLeft(Node *node) {
     //in a right-heavy tree...
@@ -79,6 +82,7 @@ Node* MyAVLTree::rotateLeft(Node *node) {
 }
 
 //Citation: Class Presentation 4-Balanced Trees Slides #12-14
+
 //Rotates node to the right
 Node* MyAVLTree::rotateRight(Node *node) {
     //in a left-heavy tree...
@@ -94,6 +98,7 @@ Node* MyAVLTree::rotateRight(Node *node) {
 }
 
 //Citation: Used Stepik Module5_Solution.PDF as reference and guide
+
 //Inorder function prints the values in the tree in numerical order, printing all left nodes first, then the node itself, then all right nodes.
 void MyAVLTree::inorderHelper(Node* node, vector<string>& results) const{
     //if no node is found
@@ -152,6 +157,7 @@ void MyAVLTree::printInorder() const{
 }
 
 //Citation: Used Stepik Module5_Solution.PDF as reference and guide
+
 //Preorder function prints the node itself first, then recursively prints the left subtree, then recursively prints the right subtree
 void MyAVLTree::preorderHelper(Node* node, vector<string>& results) const{
     //if no node is found
@@ -192,6 +198,7 @@ void MyAVLTree::printPreorder() const{
 }
 
 //Citation: Used Stepik Module5_Solution.PDF as reference and guide
+
 //Postorder function recursively prints the left subtree, then recursively prints the right subtree, then prints the node itself
 void MyAVLTree::postorderHelper(Node* node, vector<string>& results) const{
     //if no node is found
@@ -306,6 +313,7 @@ void MyAVLTree::searchName(string name){
 
 //Citation: Referenced and used Class Slides 4-Balanced Trees.pdf slides 79-81
 //Citation: for Structure and Pseudocode, referenced and used Class Slides 3- Trees.pdf slide 38
+
 //Remove function deletes a node with a given ID
 Node* MyAVLTree::removeHelper(Node *node, string targetUfid){
 
@@ -322,6 +330,7 @@ Node* MyAVLTree::removeHelper(Node *node, string targetUfid){
     int nodeNum = stoi(node->ufid);
 
     //Citation: inspiration from Project 1 Breakdown slide 15
+    
     //recursively search left or right subtrees for node to remove
     if (nodeNum > targetNum) {
         node->left = removeHelper(node->left, targetUfid);
@@ -343,7 +352,6 @@ Node* MyAVLTree::removeHelper(Node *node, string targetUfid){
             success = true;
         }else{
             //find leftmost child of right root
-            //THANK YOU for the Project 1 Breakdown video, around 31:00 gave me a huge breakthrough after being stuck!
 
             //in the right subtree of the root
             Node* successor = node->right;
@@ -382,8 +390,8 @@ Node* MyAVLTree::removeHelper(Node *node, string targetUfid){
                success = true;
            }else if(node->left != nullptr && node->right != nullptr){
 
-                   //find leftmost child of right root
-                   Node* successor = node->right;
+                //find leftmost child of right root
+                Node* successor = node->right;
 
                //while there are still left children...
                while(successor->left != nullptr){
@@ -449,12 +457,14 @@ void MyAVLTree::removeInorder(int n) {
 }
 
 //Citation: followed example from AVL Project Breakdown/Q&A Session video
+
 Node* MyAVLTree::insert(string name, string ufid){
     this -> root = insertHelper(this -> root, name, ufid);
     return root;
 }
 
 //Citation: Class Slides 4-Balanced Trees slide 28
+
 //inserts and creates a new node
 Node* MyAVLTree::insertHelper(Node* node, string name, string newUfid)
 {
