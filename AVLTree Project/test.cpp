@@ -1,4 +1,3 @@
-/*
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
 #include <string>
@@ -417,8 +416,7 @@ TEST_CASE("Test 5- Deletion Cases", "deletion_cases") {
 
 }
 
-//credit to provided link of Catch Test Examples onlinegdb for help and reference
-//https://www.onlinegdb.com/Ih4XEhD80w
+//CITATION: https://www.onlinegdb.com/Ih4XEhD80w
 TEST_CASE("Test 6- 100 insertions and 10 removals", "insertion_and_removal_cases") {
 
     MyAVLTree tree;
@@ -469,5 +467,3 @@ TEST_CASE("Test 6- 100 insertions and 10 removals", "insertion_and_removal_cases
     REQUIRE(treeSizeCheck == 90); //make sure 10 nodes were removed
 
 }
- 
-*/
