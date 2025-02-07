@@ -9,7 +9,6 @@ using namespace std;
 
 //Joanna Mijares
 
-//referenced class slides 8a - Graph Terminology and Implementation.pdf, slide 58
 class AdjacencyList {
 private:
     map<string, vector<pair<string,float>>> adjList;
