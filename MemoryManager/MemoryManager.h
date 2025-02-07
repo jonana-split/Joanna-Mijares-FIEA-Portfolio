@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-// linked list, stores blocks/holes
+// linked list, stores blocks/holes in memory
 //CITE: https://www.geeksforgeeks.org/doubly-linked-list/
 struct Block {
   int size;
@@ -34,7 +34,6 @@ class MemoryManager
       void setAllocator(function<int(int, void *)> allocator);
       int dumpMemoryMap(char *filename);
       void *getList();
-      void *getBitmap();
       unsigned getWordSize();
       void *getMemoryStart();
       unsigned getMemoryLimit();
