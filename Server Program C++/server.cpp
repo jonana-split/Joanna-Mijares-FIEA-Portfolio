@@ -18,7 +18,7 @@ using namespace std;
 
 //CITATIONS:
 //Ex8 Discussion Video: https://www.youtube.com/watch?v=vNHNcdpWImo
-//more citations throughout code :-)
+//more citations throughout code
 
 class ServerWall{
 
@@ -51,6 +51,7 @@ public:
         //clear wall
     }
 
+    //get contents of entire wall
     string getWallContents() const {
 
         string header = WALL_HEADER;
@@ -69,9 +70,11 @@ public:
 
 //CITE: https://stackoverflow.com/questions/5590381/how-to-convert-int-to-string-in-c
 //CITE: https://www.geeksforgeeks.org/socket-programming-in-cpp/
+
     void postMessage(int client){
         //send prompt to client, ask for name
         send(client, NAME_PROMPT, strlen(NAME_PROMPT), 0);
+        
         //recieve name from client + store
         char name[1000] = {0};
         int n = read(client, name, sizeof(name)-1);
@@ -88,24 +91,26 @@ public:
             }
         }
 
-
+        //subtract name of client from max -2
         int maxLength = 78 - nameStr.length();
         string maxLengthStr = to_string(maxLength);
 
         int length = nameStr.length();
 
-        //subtract name of client from max -2
         //ask for message content of certain length
+        //prompts were provided by professor
         send(client, POST_PROMPT1, strlen(POST_PROMPT1), 0);
         send(client, maxLengthStr.c_str(), maxLengthStr.length(), 0);
         send(client, POST_PROMPT2, strlen(POST_PROMPT2), 0);
 
+        //make length is valid
         if(nameStr.length()>=78 || (n-1) >= 78){
             send(client, "\n", strlen("\n"), 0);
             send(client, ERROR_MESSAGE, strlen(ERROR_MESSAGE), 0);
             return;
         }
 
+        //message from client, up to 999 characters
         char message[1000] = {0};
         int k = read(client, message, sizeof(message)-1);
 
@@ -122,6 +127,7 @@ public:
 
         string mssg = nameStr + ": " + messageNoNewline;
 
+        //validate message length, success or error messages provided by professor
         if(messageNoNewline.length() > maxLength || (k-1)>maxLength){
             mssg.clear();
             send(client, ERROR_MESSAGE, strlen(ERROR_MESSAGE), 0);
@@ -130,11 +136,7 @@ public:
             addMessage(mssg);
             send(client, SUCCESS_MESSAGE, strlen(SUCCESS_MESSAGE), 0);
         }
-
-        //recieve from client + store
-        //if message > length, send error
-        //otherwise, add message to wall + success reply
-        //after exceeding queue, delete first message
+        
     }
 
     void quit(int client){
@@ -156,9 +158,12 @@ public:
 };
 
 int main(int argc, char** argv){
+
+    //establish max number of messages on wall
     int maxNumMessages = 20;
     int port = 5514;
 
+    // max number of messages or port are optional but can be changed here
     if(argc >= 2){
         maxNumMessages = atoi(argv[1]);
     }
@@ -183,18 +188,18 @@ int main(int argc, char** argv){
     serverAddr.sin_port = htons(port);
     serverAddr.sin_addr.s_addr = INADDR_ANY;
 
-    //configure addr
-    //bind socket to IP + Port (bind())
+    //configure address
+    //bind socket to IP + Port
     bind(serverSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
     
     cout<<"Wall server running on port "<<port<<" with queue size "<<maxNumMessages<<"."<<endl;
     
-    //listen for connections (listen())
+    //listen for connections
     listen(serverSocket, maxNumMessages);
 
-    //accept conn and handle
+    //accept connection and handle
     while(true){
-        //client conn w/ accept()
+        //client connection w/ accept()
         //CITE: https://www.geeksforgeeks.org/socket-programming-cc/
         socklen_t addressL = sizeof(serverAddr);
         int clientSocket = accept(serverSocket, (struct sockaddr*)&serverAddr, &addressL);
@@ -215,27 +220,29 @@ int main(int argc, char** argv){
             //make sure comm is empty
             memset(comm, '\0', sizeof(comm));
 
+            //ask for command
             send(clientSocket, "\n", strlen("\n"), 0);
             send(clientSocket, COMMAND_PROMPT, strlen(COMMAND_PROMPT), 0);
 
+            //read command from client, and make it a string
             int n = read(clientSocket, comm, 500);
-
             string command = string(comm);
             
-            //this little while loop fixed my whole code lol
             while(command.back() == '\n'){
                 if(command.back() == '\n'){
                     command.pop_back();
                 }
             }
 
+            //clear comm
             memset(comm, '\0', sizeof(comm));
 
-            //https://www.youtube.com/watch?v=Ts8eXOkx8TE&list=PLPyaR5G9aNDvs6TtdpLcVO43_jvxp4emI&index=5
+            //CITE: https://www.youtube.com/watch?v=Ts8eXOkx8TE&list=PLPyaR5G9aNDvs6TtdpLcVO43_jvxp4emI&index=5
             if(n <= 0){
                 break;
             }
 
+            //respond to commands if they match, otherwise invalid command
             if(command == "quit"){
                 cout<<"Client quit"<<endl;
                 server.quit(clientSocket);
