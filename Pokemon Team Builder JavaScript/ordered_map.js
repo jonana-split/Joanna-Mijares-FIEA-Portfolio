@@ -9,7 +9,7 @@ Sahan Chery
 */
 
 
-//Implementing RedBlack trees in JavaScript
+//CITATIONS:
 //Class Slides 96-146 4 - Balanced Trees.pdf
 //https://www.sahinarslan.tech/posts/deep-dive-into-data-structures-using-javascript-red-black-tree
 //https://dev.to/humblecoder00/deep-dive-into-data-structures-using-javascript-red-black-tree-4lnb
@@ -40,17 +40,17 @@ const colors = {
     }
   }
 
-  //creates our ordered map!
+  //creates our ordered map
 class orderedPokeMap{
 
     constructor() {
         this.root = null
       }
-
-      //INSERT
+    
       insert(key, value) {
 
-        //inner function, learned from https://dev.to/humblecoder00/deep-dive-into-data-structures-using-javascript-red-black-tree-4lnb
+        //inner function
+        //CITATION: https://dev.to/humblecoder00/deep-dive-into-data-structures-using-javascript-red-black-tree-4lnb
         const insertHelper = (node) => {
           
             //the current node
@@ -102,7 +102,6 @@ class orderedPokeMap{
 
 
       //FIX INSERT (adjusts colors and handles rotations)
-      //primarily from class slides 96-146
       fixInsert(node) {
     
         //current node is the one we are fixing
@@ -173,7 +172,7 @@ class orderedPokeMap{
 
       }
 
-    //heavily referenced for rotations:
+    //CITATIONS for rotations:
     //https://dev.to/humblecoder00/deep-dive-into-data-structures-using-javascript-red-black-tree-4lnb
     //https://www.sahinarslan.tech/posts/deep-dive-into-data-structures-using-javascript-red-black-tree
     //https://www.youtube.com/watch?v=95s3ndZRGbk
@@ -193,18 +192,18 @@ class orderedPokeMap{
             current.left.parent = node;
         }
 
-        //set curren't parent to og node's parent
+        //set current parent to original node's parent
         current.parent = parent;
 
         //if there is no parent, the node we're looking at is the root
         if (!parent) {
           this.root = current;
 
-        //otherwise, if the og node is now the og node's parent's left, the paren't left node is the current node
+        //otherwise, if the original node is now the original node's parent's left, the paren't left node is the current node
         }else if (node == parent.left) {
             parent.left = current;
 
-        //otherwise, the og node's parent's right node is the current node
+        //otherwise, the original node's parent's right node is the current node
         }else{
             parent.right = current;
         }
@@ -212,12 +211,12 @@ class orderedPokeMap{
         //our current node's left node is now officially the original node
         current.left = node;
 
-        //the og node's parent is officially the current node. rotation success
+        //the original node's parent is officially the current node. rotation success
         node.parent = current;
 
     }
     
-    //heavily referenced for rotations:
+    //CITATION for rotations:
     //https://dev.to/humblecoder00/deep-dive-into-data-structures-using-javascript-red-black-tree-4lnb
     //https://www.sahinarslan.tech/posts/deep-dive-into-data-structures-using-javascript-red-black-tree
     //https://www.youtube.com/watch?v=95s3ndZRGbk
@@ -236,18 +235,18 @@ class orderedPokeMap{
             current.right.parent = node;
         }
 
-        //set curren't parent to og node's parent
+        //set curren't parent to original node's parent
         current.parent = parent;
 
         //if there is no parent, the node we're looking at is the root
         if (!parent) {
             this.root = current;
 
-        //otherwise, if the og node is now the og node's parent's right, the paren't right node is the current node
+        //otherwise, if the original node is now the original node's parent's right, the paren't right node is the current node
         }else if (node == parent.right) {
             parent.right = current;
 
-        //otherwise, the og node's parent's left node is the current node
+        //otherwise, the original node's parent's left node is the current node
         }else{
             parent.left = current;
         }
@@ -255,12 +254,12 @@ class orderedPokeMap{
         //our current node's right node is now officially the original node
         current.right = node;
 
-        //the og node's parent is officially the current node. rotation success
+        //the original node's parent is officially the current node. rotation success
         node.parent = current;
         
     }
       
-      //modified search and/or delete function! gets the value associated with key recursively
+      //modified search and/or delete function, gets the value associated with key recursively
       get(key, node = this.root) {
         
         //if there is no node then just return null
@@ -304,7 +303,7 @@ class orderedPokeMap{
         //go through the tree in order to get an already sorted array
        this.inorder(this.root, allNames);
 
-        console.log("Names:", allNames); //some debugging
+        console.log("Names:", allNames); // debugging
 
         return allNames;
 
